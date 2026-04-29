@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="fr" data-lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Course longue distance — Vasilii Berezin · 100 km + spectacle</title>
+<meta name="description" content="Course longue distance — un ultramarathon de 100 km, puis le spectacle, sans pause. Mise en scène : Vasilii Berezin. Le 20 juin — en soutien aux réfugiés." />
+<meta name="theme-color" content="#E10600" />
+<meta property="og:title" content="Course longue distance — 100 km, puis le spectacle" />
+<meta property="og:description" content="Ultramarathon en soutien aux réfugiés. Le théâtre commence sur l'asphalte. 20 juin." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="assets/poster.jpg" />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:locale:alternate" content="en_US" />
+<meta property="og:locale:alternate" content="ru_RU" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Ctext x='16' y='22' font-family='Helvetica,sans-serif' font-weight='900' font-size='20' fill='%23E10600' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;700&family=Caveat:wght@400;500;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0A0A0A;
+    --paper:#F4F1EC;
+    --white:#FAFAFA;
+    --red:#E10600;
+    --red-deep:#B30000;
+    --grey:#7A7A7A;
+    --line:#1A1A1A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:60px}
+  body{
+    background:var(--paper);
+    color:var(--black);
+    font-family:'Inter',sans-serif;
+    font-weight:400;
+    line-height:1.55;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:'Archivo Black','Helvetica Neue',sans-serif;line-height:0.92;letter-spacing:-0.02em;text-transform:uppercase}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  /* film grain overlay — fixed, breathes */
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:200;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    opacity:0.18;mix-blend-mode:multiply;
+    animation:grain 1.2s steps(4) infinite;
+  }
+  @keyframes grain{
+    0%{transform:translate(0,0)}
+    25%{transform:translate(-3%,2%)}
+    50%{transform:translate(2%,-1%)}
+    75%{transform:translate(-1%,-3%)}
+    100%{transform:translate(0,0)}
+  }
+
+  /* i18n switch */
+  [data-en],[data-ru],[data-fr]{display:none}
+  html[data-lang="en"] [data-en],
+  html[data-lang="ru"] [data-ru],
+  html[data-lang="fr"] [data-fr]{display:revert}
+
+  /* Top bar */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:300;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:14px 28px;
+    background:rgba(244,241,236,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(0,0,0,0.08);
+    font-family:'Archivo Black',sans-serif;
+    font-size:13px;letter-spacing:0.04em;text-transform:uppercase;
+  }
+  nav .brand{display:flex;align-items:center;gap:10px}
+  /* Heart shape in navbar — slow, gentle pulse */
+  nav .brand .heart{
+    width:14px;height:14px;flex-shrink:0;
+    color:var(--red);
+    animation:heartbeat 1.7s ease-in-out infinite;
+    transform-origin:center;
+    opacity:0.85;
+  }
+  @keyframes heartbeat{
+    0%,100%{transform:scale(1);opacity:0.7}
+    18%{transform:scale(1.18);opacity:1}
+    32%{transform:scale(1);opacity:0.75}
+    44%{transform:scale(1.08);opacity:0.9}
+    58%,100%{transform:scale(1);opacity:0.7}
+  }
+  nav .links{display:flex;gap:18px;align-items:center}
+  nav .links a{transition:color 0.2s}
+  nav .links a:hover{color:var(--red)}
+  .lang{display:flex;gap:6px;font-size:11px}
+  .lang button{background:none;border:1px solid var(--black);color:var(--black);padding:4px 8px;cursor:pointer;font-family:inherit;font-size:11px;letter-spacing:0.05em;text-transform:uppercase}
+  .lang button.active{background:var(--black);color:var(--paper)}
+  .lang button:hover{background:var(--red);color:var(--paper);border-color:var(--red)}
+
+  /* km + bpm ticker — discreet, top right */
+  .ticker{
+    position:fixed;top:58px;right:14px;z-index:280;
+    display:flex;flex-direction:column;gap:4px;
+    font-family:'Archivo Black',sans-serif;
+    font-size:10px;letter-spacing:0.1em;text-transform:uppercase;
+    opacity:0.78;
+    transition:opacity 0.3s;
+  }
+  .ticker:hover{opacity:1}
+  .ticker .row{
+    background:rgba(10,10,10,0.85);
+    padding:5px 9px;
+    border:1px solid rgba(225,6,0,0.6);
+    display:flex;align-items:center;gap:6px;
+    color:var(--red);
+    backdrop-filter:blur(4px);
+  }
+  .ticker .row .num{font-size:14px;color:var(--paper);display:inline-block;min-width:32px;text-align:right}
+  .ticker .bpm-heart{
+    display:inline-block;color:var(--red);font-size:12px;line-height:1;
+  }
+
+  /* Hero */
+  .hero{
+    min-height:100vh;
+    display:grid;grid-template-columns:1.05fr 1fr;
+    background:var(--black);
+    color:var(--paper);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .poster{
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .poster{
+    background:var(--black);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .hero .poster img{
+    width:100%;height:100%;
+    object-fit:contain;
+    object-position:center;
+  }
+  .hero .text{
+    padding:120px 50px 60px;
+    display:flex;flex-direction:column;justify-content:space-between;
+    position:relative;
+  }
+  .hero h1{
+    font-size:clamp(48px,7.5vw,128px);
+    color:var(--paper);
+  }
+  .hero h1 .red{color:var(--red);display:block}
+  .hero .subline{
+    margin-top:30px;
+    font-size:clamp(16px,1.4vw,22px);
+    font-weight:300;
+    line-height:1.4;
+    max-width:520px;
+    color:#D8D5D0;
+  }
+  .hero .meta{
+    margin-top:50px;
+    display:flex;flex-wrap:wrap;gap:24px;
+    font-family:'Archivo Black',sans-serif;
+    font-size:12px;letter-spacing:0.1em;text-transform:uppercase;
+    border-top:1px solid rgba(255,255,255,0.15);padding-top:24px;
+  }
+  .hero .meta div span{display:block;color:var(--grey);font-size:10px;margin-bottom:4px;font-weight:400;letter-spacing:0.15em}
+  .hero .meta div strong{color:var(--paper);font-weight:inherit}
+
+  .scroll-cue{
+    position:absolute;bottom:24px;left:50px;
+    display:flex;align-items:center;gap:10px;
+    font-family:'Archivo Black',sans-serif;font-size:10px;letter-spacing:0.2em;color:var(--paper);
+    opacity:0.7;
+  }
+  .scroll-cue .line{width:60px;height:1px;background:var(--paper);transform-origin:left;animation:lineGrow 2s ease-in-out infinite}
+  @keyframes lineGrow{0%,100%{transform:scaleX(0.4)}50%{transform:scaleX(1)}}
+
+  /* Manifesto */
+  .manifesto{
+    padding:140px 8vw;
+    background:var(--paper);
+    color:var(--black);
+    border-bottom:1px solid var(--line);
+  }
+  .manifesto .km-mark{
+    font-family:'Archivo Black',sans-serif;font-size:11px;letter-spacing:0.2em;color:var(--red);margin-bottom:30px;
+  }
+  .manifesto h2{
+    font-size:clamp(40px,6vw,96px);
+    max-width:13ch;
+  }
+  .manifesto h2 .red{color:var(--red)}
+  .manifesto .body{
+    margin-top:60px;
+    display:grid;grid-template-columns:1fr 1fr;gap:40px;
+    font-size:18px;line-height:1.65;
+    max-width:1200px;
+  }
+  .manifesto .body p+p{margin-top:18px}
+  .manifesto .pull{
+    margin-top:60px;
+    font-family:'Archivo Black',sans-serif;
+    font-size:clamp(28px,3vw,46px);
+    line-height:1.05;
+    text-transform:uppercase;
+    border-left:6px solid var(--red);
+    padding:14px 0 14px 26px;
+    max-width:900px;
+  }
+
+  /* Strip — running rhythm of photos */
+  .strip{
+    background:var(--black);
+    padding:70px 0;
+    overflow:hidden;
+    position:relative;
+  }
+  .strip-track{
+    display:flex;gap:24px;
+    animation:tape 38s linear infinite;
+    width:max-content;
+  }
+  @keyframes tape{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .strip figure{
+    width:380px;flex-shrink:0;
+    border:6px solid var(--paper);
+    background:var(--paper);
+    box-shadow:0 0 0 1px var(--red), 8px 8px 0 var(--red);
+    transition:transform 0.3s;
+  }
+  .strip figure:hover{transform:rotate(-1deg) scale(1.02)}
+  .strip figure img{
+    width:100%;aspect-ratio:4/3;object-fit:cover;
+    filter:grayscale(1) contrast(1.15);
+  }
+  .strip figcaption{
+    padding:8px 12px;
+    font-family:'Archivo Black',sans-serif;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;
+    color:var(--black);
+    display:flex;justify-content:space-between;
+  }
+
+  /* The diary — récit */
+  .recit{
+    padding:140px 8vw;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+  .recit .km-mark{
+    font-family:'Archivo Black',sans-serif;font-size:11px;letter-spacing:0.2em;color:var(--red);margin-bottom:30px;
+  }
+  .recit h2{
+    font-size:clamp(36px,5vw,80px);
+    margin-bottom:50px;
+    max-width:14ch;
+  }
+  .recit .grid{
+    display:grid;grid-template-columns:repeat(12,1fr);gap:30px;
+  }
+  .recit .lead{grid-column:1/8;font-size:21px;line-height:1.55}
+  .recit .lead p+p{margin-top:18px}
+  .recit .side{
+    grid-column:9/13;
+    display:flex;flex-direction:column;gap:30px;
+    font-size:14px;color:var(--grey);
+  }
+  .recit .side .card{
+    border:1px solid var(--line);padding:18px;background:#fff;
+  }
+  .recit .side .card h4{font-size:13px;color:var(--red);margin-bottom:6px;letter-spacing:0.15em}
+  .recit .side .card p{color:var(--black);font-size:14px;line-height:1.5}
+
+  .moments{
+    margin-top:80px;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0;
+    border-top:1px solid var(--line);
+  }
+  .moments .moment{
+    padding:30px 26px;
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .moments .moment .km{
+    font-family:'Archivo Black',sans-serif;color:var(--red);font-size:32px;display:block;margin-bottom:10px;
+  }
+  .moments .moment p{font-size:15px;line-height:1.5}
+
+  /* Portrait sketch in recit — dark on paper, no filter */
+  .portrait-sketch{
+    width:100%;
+    max-width:300px;
+    margin:0 auto -20px;
+    opacity:0.92;
+    transform:rotate(2deg);
+    transition:transform 0.5s ease;
+  }
+  .portrait-sketch:hover{transform:rotate(-1deg) scale(1.04)}
+
+  /* Partners */
+  .partners{
+    padding:60px 8vw;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+    text-align:center;
+  }
+  .partners h4{
+    font-family:'Archivo Black',sans-serif;
+    font-size:11px;letter-spacing:0.25em;color:var(--red);
+    margin-bottom:30px;text-transform:uppercase;
+  }
+  .partners .row{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:50px;align-items:center;
+  }
+  .partners .row a{
+    display:flex;align-items:center;gap:14px;
+    padding:14px 22px;
+    border:1px solid var(--line);
+    transition:all 0.25s;
+    font-family:'Archivo Black',sans-serif;
+    font-size:14px;letter-spacing:0.05em;text-transform:uppercase;
+    line-height:1;
+  }
+  .partners .row a:hover{background:var(--black);color:var(--paper);border-color:var(--black);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--red)}
+  .partners .row a img,.partners .row a svg{width:36px;height:36px;object-fit:contain;flex-shrink:0}
+  .partners .row a small{display:block;font-size:9px;color:var(--grey);font-weight:400;margin-top:4px;letter-spacing:0.1em}
+
+  /* June 20 — call to action */
+  .june{
+    padding:140px 8vw;
+    background:var(--red);
+    color:var(--paper);
+    position:relative;
+    overflow:hidden;
+  }
+  .june::before{
+    content:"";position:absolute;inset:0;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.18'/></svg>");
+    pointer-events:none;
+  }
+  .june .km-mark{
+    font-family:'Archivo Black',sans-serif;font-size:11px;letter-spacing:0.2em;color:var(--black);margin-bottom:30px;
+  }
+  .june .handwriting{
+    margin:0 auto 30px;
+    max-width:900px;
+    text-align:center;
+  }
+  .june .handwriting img{
+    margin:0 auto;
+    max-width:100%;
+    /* dark strokes on transparent → invert to paper-colored on red bg */
+    filter:invert(1) brightness(1.05) drop-shadow(3px 3px 0 rgba(0,0,0,0.4));
+  }
+  .june h2{
+    font-size:clamp(48px,8vw,150px);
+    color:var(--paper);
+    text-align:center;
+    margin:30px 0 20px;
+  }
+  .june h2 .date{display:block;color:var(--black)}
+  .june .lead{
+    max-width:760px;margin:30px auto 0;
+    font-size:20px;line-height:1.55;text-align:center;
+    color:var(--paper);
+  }
+  .june .runner-sketch{
+    display:block;margin:60px auto 30px;
+    width:280px;height:auto;
+    filter:invert(1) brightness(1.05) drop-shadow(2px 2px 0 rgba(0,0,0,0.3));
+  }
+
+  .june .actions{
+    margin-top:60px;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;
+    max-width:1100px;margin-left:auto;margin-right:auto;
+  }
+  .june .actions a{
+    display:block;
+    padding:30px 24px;
+    background:var(--black);
+    color:var(--paper);
+    border:2px solid var(--paper);
+    transition:all 0.25s;
+    position:relative;
+  }
+  .june .actions a:hover{background:var(--paper);color:var(--red);transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--black)}
+  .june .actions a strong{
+    display:block;
+    font-family:'Archivo Black',sans-serif;
+    font-size:18px;letter-spacing:0.05em;text-transform:uppercase;
+    margin-bottom:6px;
+  }
+  .june .actions a span{font-size:14px;line-height:1.4;opacity:0.85}
+
+  /* Quote section */
+  .quote{
+    padding:120px 8vw;
+    background:var(--black);
+    color:var(--paper);
+    text-align:center;
+  }
+  .quote blockquote{
+    max-width:1000px;margin:0 auto;
+    font-family:'Archivo Black',sans-serif;
+    font-size:clamp(26px,3.4vw,52px);
+    line-height:1.1;
+    text-transform:uppercase;
+  }
+  .quote blockquote .red{color:var(--red)}
+  .quote cite{
+    display:block;margin-top:30px;
+    font-family:'Inter',sans-serif;font-style:normal;
+    font-size:14px;letter-spacing:0.2em;text-transform:uppercase;color:var(--grey);
+  }
+
+  /* ECG / heartbeat trace — quiet, ambient line between sections */
+  .ecg{
+    width:100%;height:48px;
+    background:var(--black);
+    overflow:hidden;
+    position:relative;
+  }
+  .ecg svg{
+    width:200%;height:100%;
+    display:block;
+    animation:ecgRoll 7s linear infinite;
+    opacity:0.55;
+  }
+  .ecg svg path{
+    stroke:var(--red);
+    stroke-width:1.3;
+    fill:none;
+  }
+  @keyframes ecgRoll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* Footer */
+  footer{
+    padding:80px 8vw 40px;
+    background:var(--paper);
+    color:var(--black);
+    border-top:1px solid var(--line);
+    font-size:14px;
+  }
+  footer .grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;
+    margin-bottom:50px;
+  }
+  footer h4{font-size:11px;letter-spacing:0.2em;color:var(--red);margin-bottom:12px}
+  footer ul{list-style:none}
+  footer ul li{margin-bottom:6px}
+  footer ul li a:hover{color:var(--red)}
+  footer .bottom{
+    display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px;
+    border-top:1px solid var(--line);padding-top:20px;
+    font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey);
+  }
+  footer .bottom .sig{
+    font-family:'Caveat',cursive;font-size:24px;color:var(--black);
+    text-transform:none;letter-spacing:0;
+  }
+
+  /* Reveal */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.9s ease,transform 0.9s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* Mobile */
+  @media (max-width:880px){
+    nav{padding:12px 16px;font-size:11px}
+    nav .links{gap:12px}
+    nav .links a:not(.lang-wrapper){display:none}
+    .ticker{top:54px;right:8px;font-size:9px}
+    .ticker .row{padding:4px 7px}
+    .ticker .row .num{font-size:12px;min-width:26px}
+    .hero{grid-template-columns:1fr;min-height:auto}
+    .hero .poster{aspect-ratio:3/4;max-height:60vh}
+    .hero .text{padding:60px 24px 80px}
+    .scroll-cue{left:24px}
+    .manifesto,.recit,.june,.quote{padding:80px 24px}
+    .manifesto .body{grid-template-columns:1fr;gap:24px}
+    .recit .grid{grid-template-columns:1fr}
+    .recit .lead,.recit .side{grid-column:1}
+    .strip figure{width:260px}
+    .strip figure img{aspect-ratio:4/3}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">
+    <svg class="heart" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.5-9.4C1.1 8.1 3.5 5 6.7 5c1.9 0 3.6 1 4.3 2.5h2C13.7 6 15.4 5 17.3 5c3.2 0 5.6 3.1 4.2 6.6C19.5 16.4 12 21 12 21z"/></svg>
+    <span>Course longue distance</span>
+  </div>
+  <div class="links">
+    <a href="#manifeste" data-fr>Manifeste</a><a href="#manifeste" data-en>Manifesto</a><a href="#manifeste" data-ru>Манифест</a>
+    <a href="#recit" data-fr>Récit</a><a href="#recit" data-en>The run</a><a href="#recit" data-ru>Дневник</a>
+    <a href="#june" data-fr>20 juin</a><a href="#june" data-en>20 June</a><a href="#june" data-ru>20 июня</a>
+    <span class="lang lang-wrapper">
+      <button data-set="fr">FR</button><button data-set="en">EN</button><button data-set="ru">RU</button>
+    </span>
+  </div>
+</nav>
+
+<div class="ticker">
+  <div class="row"><span data-fr>KM</span><span data-en>KM</span><span data-ru>КМ</span> <span class="num" id="km">0</span> / 100</div>
+  <div class="row"><span class="bpm-heart">♥</span> <span class="num" id="bpm">142</span> BPM</div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="poster">
+    <img src="assets/poster.jpg" alt="Course longue distance — affiche / poster" />
+  </div>
+  <div class="text">
+    <div>
+      <h1>
+        <span data-fr>Course<br>longue<br><span class="red">distance.</span></span>
+        <span data-en>Long<br>distance<br><span class="red">running.</span></span>
+        <span data-ru>Бег на<br>длинную<br><span class="red">дистанцию.</span></span>
+      </h1>
+      <p class="subline">
+        <span data-fr>Cent kilomètres : non une distance, mais une intensité.<br>Le corps ne traverse pas la ville — la ville traverse le corps.<br>Lorsque la course s'arrête, il n'y a plus de séparation entre la chair et la scène : un seul agencement qui respire.</span>
+        <span data-en>A hundred kilometres: not a distance, but an intensity.<br>The body does not cross the city — the city crosses the body.<br>When the running stops, there is no longer any separation between flesh and stage: a single assemblage, breathing.</span>
+        <span data-ru>Сто километров — не расстояние, а интенсивность.<br>Тело не пересекает город — город пересекает тело.<br>Когда бег останавливается, между плотью и сценой больше нет разделения: единая сборка, которая дышит.</span>
+      </p>
+    </div>
+
+    <div class="meta">
+      <div>
+        <span data-fr>Mise en scène</span><span data-en>Director</span><span data-ru>Режиссёр</span>
+        <strong>Vasilii Berezin</strong>
+      </div>
+      <div>
+        <span data-fr>Première</span><span data-en>Premiere</span><span data-ru>Премьера</span>
+        <strong>13.03.2026 · Le Chat Noir</strong>
+      </div>
+      <div>
+        <span data-fr>Prochaine</span><span data-en>Next</span><span data-ru>Следующий</span>
+        <strong style="color:var(--red)">20.06.2026</strong>
+      </div>
+      <div>
+        <span data-fr>Distance</span><span data-en>Distance</span><span data-ru>Дистанция</span>
+        <strong>97 / 100 km</strong>
+      </div>
+    </div>
+
+    <div class="scroll-cue">
+      <span data-fr>Descendre</span><span data-en>Scroll</span><span data-ru>Вниз</span>
+      <div class="line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto" id="manifeste">
+  <div class="km-mark">KM 00 — 25 · <span data-fr>Manifeste</span><span data-en>Manifesto</span><span data-ru>Манифест</span></div>
+  <h2>
+    <span data-fr>Le théâtre commence<br>sur <span class="red">l'asphalte.</span></span>
+    <span data-en>Theatre begins<br>on the <span class="red">asphalt.</span></span>
+    <span data-ru>Театр начинается<br>с <span class="red">асфальта.</span></span>
+  </h2>
+
+  <div class="body">
+    <div data-fr>
+      <p>Ce n'est ni un monologue, ni une performance d'endurance. C'est une <strong>ligne de fuite</strong>.</p>
+      <p>Avant la scène, le corps a encore un nom, un visage, une biographie. Cent kilomètres plus tard, il les a perdus. Il n'est plus un acteur — il est un <em>corps sans organes</em>, traversé par la pluie, le rythme, le souffle.</p>
+      <p>La course n'est pas une préparation : elle est déjà le théâtre. Pas d'avant, pas d'après — un continuum d'intensités. L'épuisement n'est pas une fin, mais un seuil. Au seuil, le sujet se dissout. Reste l'agencement : <em>asphalte – pluie – poumons – pas</em>.</p>
+    </div>
+    <div data-en>
+      <p>Not a monologue. Not an endurance performance. A <strong>line of flight</strong>.</p>
+      <p>Before the stage, the body still has a name, a face, a biography. A hundred kilometres later, it has lost them. It is no longer an actor — it is a <em>body without organs</em>, traversed by rain, by rhythm, by breath.</p>
+      <p>Running is not preparation: it is already the theatre. No before, no after — a continuum of intensities. Exhaustion is not an end but a threshold. At the threshold, the subject dissolves. What remains is the assemblage: <em>asphalt – rain – lungs – step</em>.</p>
+    </div>
+    <div data-ru>
+      <p>Не моноспектакль. Не перформанс на выносливость. <strong>Линия ускользания</strong>.</p>
+      <p>До сцены тело ещё имеет имя, лицо, биографию. Через сто километров — теряет всё это. Оно больше не актёр. Оно — <em>тело без органов</em>, через которое проходят дождь, ритм, дыхание.</p>
+      <p>Бег — не подготовка. Бег уже и есть театр. Нет «до» и «после» — есть континуум интенсивностей. Истощение — не конец, а порог. На пороге субъект растворяется. Остаётся сборка: <em>асфальт — дождь — лёгкие — шаг</em>.</p>
+    </div>
+
+    <div data-fr>
+      <p>Le spectateur n'est pas convoqué pour comprendre. Il est convoqué pour être traversé — comme le coureur a été traversé par la ville. Le théâtre devient un événement : non pas une représentation, mais une <strong>rencontre</strong>.</p>
+      <p>Je veux qu'au moins une personne sorte de là en pensant : <em>tout est possible</em>. Si cela arrive — alors le spectacle a eu lieu.</p>
+      <p>Comme l'écrivait Antonin Artaud, déjà : « L'acteur n'est pas celui qui joue un rôle ; l'acteur est celui qui met son corps à la limite. »</p>
+    </div>
+    <div data-en>
+      <p>The spectator is not summoned to understand. They are summoned to be traversed — as the runner was traversed by the city. Theatre becomes an event: not a representation, but an <strong>encounter</strong>.</p>
+      <p>I want at least one person to walk out thinking: <em>everything is possible</em>. If that happens — the show has taken place.</p>
+      <p>As Antonin Artaud already wrote: "The actor is not the one who plays a role; the actor is the one who pushes his body to the limit."</p>
+    </div>
+    <div data-ru>
+      <p>Зрителя зовут не понимать. Зрителя зовут быть пройденным насквозь — как бегун был пройден насквозь городом. Театр становится событием: не представлением, а <strong>встречей</strong>.</p>
+      <p>Я хочу, чтобы хотя бы один человек вышел оттуда с мыслью: <em>в этой жизни возможно всё</em>. Если это случится — значит спектакль состоялся.</p>
+      <p>Как писал Антонен Арто, уже: «Актёр — это не тот, кто играет роль. Актёр — это тот, кто поставил своё тело на грань».</p>
+    </div>
+  </div>
+
+  <div class="pull">
+    <span data-fr>Cent kilomètres → puis le théâtre. Sans pause, sans représentation. Une seule ligne de fuite.</span>
+    <span data-en>A hundred kilometres → then the theatre. No break, no representation. A single line of flight.</span>
+    <span data-ru>Сто километров → потом театр. Без паузы. Без представления. Одна линия ускользания.</span>
+  </div>
+</section>
+
+<!-- ECG divider -->
+<div class="ecg" aria-hidden="true">
+  <svg viewBox="0 0 1600 80" preserveAspectRatio="none">
+    <path d="M0,40 L120,40 L150,40 L165,30 L180,55 L195,10 L210,70 L225,40 L350,40 L420,40 L450,30 L475,55 L495,10 L510,70 L530,40 L750,40 L820,40 L850,30 L875,55 L895,10 L910,70 L930,40 L1150,40 L1220,40 L1250,30 L1275,55 L1295,10 L1310,70 L1330,40 L1600,40" />
+  </svg>
+</div>
+
+<!-- STRIP -->
+<section class="strip" aria-label="photos">
+  <div class="strip-track" id="track">
+    <!-- duplicated for infinite tape -->
+  </div>
+</section>
+
+<!-- RÉCIT -->
+<section class="recit" id="recit">
+  <div class="km-mark">KM 60 — 97 · <span data-fr>Récit du 13 mars</span><span data-en>Diary, March 13</span><span data-ru>13 марта · дневник</span></div>
+  <h2>
+    <span data-fr>97 km. La pluie. Dieu.</span>
+    <span data-en>97 km. The rain. God.</span>
+    <span data-ru>97 км. Дождь. Бог.</span>
+  </h2>
+
+  <div class="grid">
+    <div class="lead">
+      <div data-fr>
+        <p>J'ai couru 97 kilomètres. Putain. Et honnêtement — je suis fier d'avoir joué ce spectacle. Je commence seulement à le comprendre maintenant : pendant un mois j'ai été dans l'auto-flagellation, parce que mon téléphone est mort sous la pluie et que Strava n'a pas tout enregistré.</p>
+        <p>La pluie a tué toute la technique. Téléphone, SIM, écran, batterie, capteurs, haut-parleur. Powerbank crevé. Écouteurs noyés. Au début j'étais furieux. Et puis j'ai compris : <strong>tout s'est passé exactement comme il fallait.</strong></p>
+        <p>Après le 60ème kilomètre, des choses ont commencé à arriver. Des révélations. Une proximité avec Dieu que je n'avais pas eue depuis longtemps. Une confession. Une mise à nu, à la manière d'Augustin. Tu cours en mode autonome, et tu sais : si tu tombes, si tu craques, Dieu t'entendra. Il est avec toi.</p>
+        <p>La douleur devient un instrument. Un instrument du corps. Tu ne peux pas t'arrêter — sinon ça fait encore plus mal. Le rythme est la loi. La respiration calme le cœur. Calme l'âme.</p>
+        <p>Je crois que la course détruit la personnalité. La conscience devient confuse. Mais c'est dans cette confusion qu'apparaît la pureté. Tu restes seul. Avec toi-même. Et avec Dieu.</p>
+        <p>Je n'ai pas couru les 3 derniers kilomètres. Mais je ne me suis pas traîné. Après le spectacle j'ai encore couru, je me suis perdu, j'ai fini les kilomètres, et je suis rentré chez moi.</p>
+      </div>
+      <div data-en>
+        <p>I ran 97 kilometres. Damn. And honestly — I'm proud I played that show. I'm only beginning to understand it now: for a month I was in self-flagellation because my phone died in the rain and Strava didn't record everything.</p>
+        <p>The rain killed all the gear. Phone, SIM, screen, battery, sensors, speaker. Powerbank dead. Headphones drowned. At first I was furious. Then I understood: <strong>everything happened exactly as it should.</strong></p>
+        <p>After kilometre 60, things started happening. Revelations. A closeness to God I hadn't felt in a long time. A confession. A nakedness, in the manner of Augustine. You run autonomously and you know: if you fall, if you break, God will hear you. He's with you.</p>
+        <p>Pain becomes an instrument. An instrument of the body. You can't stop — it would hurt even more. Rhythm is law. Breath calms the heart. Calms the soul.</p>
+        <p>I believe running destroys the personality. Consciousness gets tangled. But in that tangle, purity appears. You stay alone. With yourself. With God.</p>
+        <p>I didn't run the last 3 km. But I didn't crawl either. After the show I ran some more, got lost, finished the kilometres, ran home.</p>
+      </div>
+      <div data-ru>
+        <p>Я пробежал 97 километров. Бля. И честно — я очень рад, что сыграл этот спектакль. Только сейчас начинаю это понимать: до этого был месяц самобичевания из-за того, что сломался телефон и я не мог доказать в Strava.</p>
+        <p>Дождь убил всю технику. Телефон, симка, экран, батарея, датчики, динамик. Пауэрбанк умер. Наушники тоже. Сначала я был максимально недоволен. Потом понял: <strong>всё прошло вообще-то заебись.</strong></p>
+        <p>После 60 километра начали происходить вещи. Откровения. У меня давно не было такого ощущения близости с Богом. Как исповедь. Как у Аврелия Августина — нащупывание Бога. Ты бежишь в автономном режиме, и знаешь: если упадёшь, если сломаешься — Бог тебя услышит. Он со мной.</p>
+        <p>Боль становится инструментом. Инструментом тела. Сдаться нельзя — будет ещё больнее. Ритм — закон. Дыхание успокаивает сердце. Успокаивает душу.</p>
+        <p>Я думаю, что бег разрушает личность. Сознание становится путаным. Но именно в этой путанице появляется чистота. Ты остаёшься один. С собой. И с Богом.</p>
+        <p>Я не добежал 3 километра. Но я добежал. Я не вполз. После спектакля ещё побежал, заблудился, добил километры — и побежал домой.</p>
+      </div>
+    </div>
+
+    <div class="side">
+      <img class="portrait-sketch" src="assets/sketch-portrait.png" alt="Autoportrait — Vasilii Berezin" />
+      <div class="card">
+        <h4 data-fr>Compagnons de route</h4><h4 data-en>Co-runners</h4><h4 data-ru>Компаньоны</h4>
+        <p data-fr>Dimitris Georgiadis et Petrus — 30 minutes. Andrey Loshak et Ivan Anisimov — jusqu'au bar.</p>
+        <p data-en>Dimitris Georgiadis and Petrus — 30 minutes. Andrey Loshak and Ivan Anisimov — to the bar.</p>
+        <p data-ru>Димитрис Георгиадис и Петрус — 30 минут. Андрей Лошак и Иван Анисимов — до бара.</p>
+      </div>
+      <div class="card">
+        <h4>Murakami</h4>
+        <p data-fr>« De quoi je parle quand je parle de courir. » Le texte joué juste après l'arrivée au bar.</p>
+        <p data-en>"What I Talk About When I Talk About Running." The text played right after arrival at the bar.</p>
+        <p data-ru>«О чём я говорю, когда говорю о беге». Текст, который игрался сразу после финиша.</p>
+      </div>
+      <div class="card">
+        <h4 data-fr>Photos</h4><h4 data-en>Photos</h4><h4 data-ru>Фото</h4>
+        <p>Dima Chyornyy</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="moments">
+    <div class="moment">
+      <span class="km">07:50</span>
+      <p data-fr>Je sors. Pluie. Toute la journée, sans interruption.</p>
+      <p data-en>I head out. Rain. All day, no break.</p>
+      <p data-ru>Выбегаю. Ливень. Весь день, без паузы.</p>
+    </div>
+    <div class="moment">
+      <span class="km">KM 60</span>
+      <p data-fr>Premières révélations. Le corps se dissout. Le rythme prend le dessus.</p>
+      <p data-en>First revelations. Body dissolves. Rhythm takes over.</p>
+      <p data-ru>Первые откровения. Тело растворяется. Ритм берёт верх.</p>
+    </div>
+    <div class="moment">
+      <span class="km">KM 80</span>
+      <p data-fr>Transe. Très puissante. Très claire. Pas d'hallucination — la pureté.</p>
+      <p data-en>Trance. Very strong. Very clean. No hallucination — purity.</p>
+      <p data-ru>Транс. Очень сильный. Очень чистый. Без галлюцинаций — чистота.</p>
+    </div>
+    <div class="moment">
+      <span class="km">KM 97</span>
+      <p data-fr>Le bar. Le spectacle commence. Je joue Murakami trempé jusqu'aux os.</p>
+      <p data-en>The bar. The show begins. I play Murakami soaked to the bone.</p>
+      <p data-ru>Бар. Спектакль начинается. Играю Мураками, промокший до костей.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ECG divider -->
+<div class="ecg" aria-hidden="true">
+  <svg viewBox="0 0 1600 80" preserveAspectRatio="none">
+    <path d="M0,40 L120,40 L150,40 L165,30 L180,55 L195,10 L210,70 L225,40 L350,40 L420,40 L450,30 L475,55 L495,10 L510,70 L530,40 L750,40 L820,40 L850,30 L875,55 L895,10 L910,70 L930,40 L1150,40 L1220,40 L1250,30 L1275,55 L1295,10 L1310,70 L1330,40 L1600,40" />
+  </svg>
+</div>
+
+<!-- JUNE 20 — refugees -->
+<section class="june" id="june">
+  <div class="km-mark" style="color:var(--black)">KM 100 · <span data-fr>Prochaine course</span><span data-en>Next run</span><span data-ru>Следующий забег</span></div>
+
+  <!-- Vasya's actual handwriting: ULTRAMARATHON en soutien aux RÉFUGIÉS -->
+  <div class="handwriting">
+    <img src="assets/handwriting-refugees.png" alt="Ultramarathon en soutien aux réfugiés — manuscrit de Vasilii Berezin" />
+  </div>
+
+  <h2>
+    <span class="date">20.06.2026</span>
+    <span data-fr>Course pour les <span style="color:var(--black)">réfugiés.</span></span>
+    <span data-en>Run for the <span style="color:var(--black)">refugees.</span></span>
+    <span data-ru>Бег для <span style="color:var(--black)">беженцев.</span></span>
+  </h2>
+
+  <p class="lead">
+    <span data-fr>Tout réfugié est d'abord un coureur. Avant d'être un statut, un dossier, une nationalité — un corps qui fuit.<br><br>Le 20 juin, je <em>deviens-coureur</em> avec eux. Cent kilomètres comme une fuite à l'envers : non pour échapper, mais pour rejoindre. Le théâtre, ici, n'est pas un spectacle — c'est un agencement de solidarité. Corps contre corps. Souffle contre souffle.<br><br><strong>En partenariat avec L'atelier des artistes en exil.</strong></span>
+    <span data-en>Every refugee is first a runner. Before being a status, a file, a nationality — a body in flight.<br><br>On June 20, I <em>become-runner</em> with them. A hundred kilometres as a reverse flight: not to escape, but to join. Theatre, here, is not a spectacle — it is an assemblage of solidarity. Body against body. Breath against breath.<br><br><strong>In partnership with L'atelier des artistes en exil.</strong></span>
+    <span data-ru>Каждый беженец — сначала бегун. До того, как стать статусом, делом, гражданством — он тело, которое бежит.<br><br>20 июня я <em>становлюсь-бегуном</em> вместе с ними. Сто километров как обратное бегство: не чтобы убежать, а чтобы присоединиться. Театр здесь — не зрелище. Это сборка солидарности. Тело против тела. Дыхание против дыхания.<br><br><strong>Совместно с L'atelier des artistes en exil.</strong></span>
+  </p>
+
+  <img class="runner-sketch" src="assets/sketch-runner.png" alt="Coureur — croquis de Vasilii Berezin" />
+
+  <div class="actions">
+    <a href="mailto:vasiliyberezin.art@gmail.com?subject=Course%20longue%20distance%20%E2%80%94%20venir%20le%2020%20juin">
+      <strong data-fr>Venir au spectacle</strong><strong data-en>Come to the show</strong><strong data-ru>Прийти на спектакль</strong>
+      <span data-fr>20 juin · Paris · entrée libre. Écrivez-moi pour confirmer votre venue — je vous indiquerai le lieu et l'heure exacts.</span>
+      <span data-en>June 20 · Paris · free entry. Write to confirm you're coming — I'll send the exact place and time.</span>
+      <span data-ru>20 июня · Париж · вход свободный. Напишите, что придёте — пришлю точное место и время.</span>
+    </a>
+    <a href="https://instagram.com/vasiliiberezin" target="_blank" rel="noopener">
+      <strong>Instagram</strong>
+      <span data-fr>Lieu, heure, souffle en direct depuis l'asphalte.</span>
+      <span data-en>Place, hour, breath broadcast live from the asphalt.</span>
+      <span data-ru>Место, час, дыхание в прямом эфире с асфальта.</span>
+    </a>
+    <a href="mailto:vasiliyberezin.art@gmail.com?subject=T%C3%A9l%C3%A9phone%20%C2%B7%20Course%20longue%20distance">
+      <strong data-fr>Prêter un téléphone</strong><strong data-en>Lend a phone</strong><strong data-ru>Дать телефон</strong>
+      <span data-fr>Mon téléphone est mort sous la pluie pendant la dernière course. Si vous en avez un à me prêter pour enregistrer le parcours et filmer — écrivez-moi.</span>
+      <span data-en>My phone died in the rain during the last run. If you have one to lend me for recording the route and filming — please write.</span>
+      <span data-ru>Мой телефон умер под дождём в прошлый забег. Если есть телефон, который можете одолжить, чтобы записать маршрут и снять видео — напишите.</span>
+    </a>
+    <a href="mailto:vasiliyberezin.art@gmail.com?subject=Festival%20%C2%B7%20Course%20longue%20distance">
+      <strong data-fr>Inviter en festival</strong><strong data-en>Invite to a festival</strong><strong data-ru>Позвать на фестиваль</strong>
+      <span data-fr>Le spectacle voyage. Une autre ville, un autre asphalte, un autre seuil.</span>
+      <span data-en>The show travels. Another city, another asphalt, another threshold.</span>
+      <span data-ru>Спектакль ездит. Другой город, другой асфальт, другой порог.</span>
+    </a>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="partners" aria-label="partenaires">
+  <h4>
+    <span data-fr>Course du 20 juin · en partenariat avec</span>
+    <span data-en>Run of June 20 · in partnership with</span>
+    <span data-ru>Забег 20 июня · совместно с</span>
+  </h4>
+  <div class="row">
+    <a href="https://aa-e.org" target="_blank" rel="noopener">
+      <img src="assets/aae-mark.png" alt="L'atelier des artistes en exil" />
+      <span>
+        L'atelier des artistes<br>en exil
+        <small data-fr>aa-e.org · Paris</small>
+        <small data-en>aa-e.org · Paris</small>
+        <small data-ru>aa-e.org · Париж</small>
+      </span>
+    </a>
+    <a href="https://microcredit.art" target="_blank" rel="noopener">
+      <svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><rect width="36" height="36" fill="#0A0A0A"/><text x="18" y="25" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-weight="900" font-size="20" fill="#FFD600">mc</text></svg>
+      <span>
+        <span data-fr>Microcrédit</span><span data-en>Microcredit</span><span data-ru>Микрокредит</span>
+        <small data-fr>microcredit.art · soutien aux artistes</small>
+        <small data-en>microcredit.art · artist support</small>
+        <small data-ru>microcredit.art · поддержка артистов</small>
+      </span>
+    </a>
+  </div>
+</section>
+
+<!-- ECG divider -->
+<div class="ecg" aria-hidden="true">
+  <svg viewBox="0 0 1600 80" preserveAspectRatio="none">
+    <path d="M0,40 L120,40 L150,40 L165,30 L180,55 L195,10 L210,70 L225,40 L350,40 L420,40 L450,30 L475,55 L495,10 L510,70 L530,40 L750,40 L820,40 L850,30 L875,55 L895,10 L910,70 L930,40 L1150,40 L1220,40 L1250,30 L1275,55 L1295,10 L1310,70 L1330,40 L1600,40" />
+  </svg>
+</div>
+
+<!-- QUOTE -->
+<section class="quote">
+  <blockquote>
+    <span data-fr>« L'acteur n'est pas celui qui joue un rôle. <span class="red">L'acteur est celui qui met son corps à la limite.</span> »</span>
+    <span data-en>"The actor is not the one who plays a role. <span class="red">The actor is the one who pushes his body to the limit.</span>"</span>
+    <span data-ru>«Актёр — это не тот, кто играет роль. <span class="red">Актёр — это тот, кто поставил своё тело на грань.</span>»</span>
+  </blockquote>
+  <cite>Antonin Artaud</cite>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="grid">
+    <div>
+      <h4 data-fr>Spectacle</h4><h4 data-en>Show</h4><h4 data-ru>Спектакль</h4>
+      <ul>
+        <li><span data-fr>Mise en scène : Vasilii Berezin</span><span data-en>Director: Vasilii Berezin</span><span data-ru>Режиссёр: Василий Березин</span></li>
+        <li><span data-fr>D'après Haruki Murakami</span><span data-en>After Haruki Murakami</span><span data-ru>По Х. Мураками</span></li>
+        <li><span data-fr>Photos : Dima Chyornyy</span><span data-en>Photos: Dima Chyornyy</span><span data-ru>Фото: Дима Чёрный</span></li>
+      </ul>
+    </div>
+    <div>
+      <h4 data-fr>Contact</h4><h4 data-en>Contact</h4><h4 data-ru>Контакт</h4>
+      <ul>
+        <li><a href="mailto:vasiliyberezin.art@gmail.com">vasiliyberezin.art@gmail.com</a></li>
+        <li><a href="https://instagram.com/vasiliiberezin" target="_blank" rel="noopener">@vasiliiberezin</a></li>
+        <li><a href="https://oteatre.info/odinochestvo-bega/" target="_blank" rel="noopener">oteatre.info — <span data-fr>entretien</span><span data-en>interview</span><span data-ru>интервью</span></a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 data-fr>Dates</h4><h4 data-en>Dates</h4><h4 data-ru>Даты</h4>
+      <ul>
+        <li>13.03.2026 · Le Chat Noir, Paris</li>
+        <li><strong style="color:var(--red)">20.06.2026 · Paris — <span data-fr>réfugiés</span><span data-en>refugees</span><span data-ru>беженцы</span></strong></li>
+      </ul>
+    </div>
+    <div>
+      <h4 data-fr>Distance</h4><h4 data-en>Distance</h4><h4 data-ru>Дистанция</h4>
+      <ul>
+        <li>100 km</li>
+        <li><span data-fr>Pluie incluse.</span><span data-en>Rain included.</span><span data-ru>Дождь в комплекте.</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bottom">
+    <span>© 2026 Vasilii Berezin · <a href="https://microcredit.art" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid var(--red)">microcredit.art</a></span>
+    <span class="sig">
+      <span data-fr>en mouvement.</span><span data-en>in motion.</span><span data-ru>в движении.</span>
+    </span>
+  </div>
+</footer>
+
+<script>
+  /* i18n */
+  const langs = ['fr','en','ru'];
+  const html = document.documentElement;
+  function setLang(l){
+    html.setAttribute('data-lang', l);
+    localStorage.setItem('cld-lang', l);
+    document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active', b.dataset.set===l));
+    html.lang = l;
+  }
+  document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.set)));
+  const stored = localStorage.getItem('cld-lang');
+  const browser = (navigator.language||'fr').slice(0,2);
+  setLang(stored || (langs.includes(browser) ? browser : 'fr'));
+
+  /* km ticker tied to scroll · bpm drifts like a real heart under load */
+  const kmEl = document.getElementById('km');
+  const bpmEl = document.getElementById('bpm');
+  function tick(){
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    const p = Math.min(1, Math.max(0, h.scrollTop / Math.max(1,max)));
+    const km = Math.round(p * 100);
+    kmEl.textContent = km;
+    /* BPM rises with km — at km 0 ≈ 138, at km 100 ≈ 175, with subtle live wobble */
+    const base = 138 + (km * 0.37);
+    const wobble = Math.sin(Date.now()/420) * 4 + (Math.random() - 0.5) * 2;
+    bpmEl.textContent = Math.round(base + wobble);
+  }
+  window.addEventListener('scroll', tick, {passive:true});
+  setInterval(tick, 850);
+  tick();
+
+  /* photo strip — 3 unique photos, duplicated for seamless infinite tape */
+  const photos = [
+    {src:'assets/photo-1.jpg', km:'KM 32'},
+    {src:'assets/photo-2.jpg', km:'KM 65'},
+    {src:'assets/photo-4.jpg', km:'KM 97'},
+  ];
+  const track = document.getElementById('track');
+  track.innerHTML = photos.concat(photos).map(p=>(
+    `<figure><img src="${p.src}" loading="lazy" alt="${p.km}"/><figcaption><span>${p.km}</span><span>13.03</span></figcaption></figure>`
+  )).join('');
+
+  /* reveal on scroll */
+  const io = new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
+  },{threshold:0.12});
+  document.querySelectorAll('section > h2, .pull, .moment, .actions a, .body > div, .quote blockquote, .june .handwriting, .june .runner-sketch').forEach(el=>{
+    el.classList.add('reveal'); io.observe(el);
+  });
+</script>
+</body>
+</html>
