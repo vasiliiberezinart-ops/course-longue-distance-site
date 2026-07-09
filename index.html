@@ -397,6 +397,15 @@
   }
   .june .actions a span{font-size:14px;line-height:1.4;opacity:0.85}
 
+  .june .countdown{
+    display:flex;justify-content:center;gap:40px;margin:40px 0 20px;
+  }
+  .june .countdown > div{display:flex;flex-direction:column;align-items:center}
+  .june .countdown .num{
+    font-family:'Archivo Black',sans-serif;font-size:48px;color:var(--paper);line-height:1;
+  }
+  .june .countdown .unit{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);margin-top:4px}
+
   /* Quote section */
   .quote{
     padding:120px 8vw;
@@ -803,48 +812,43 @@
   </svg>
 </div>
 
-<!-- JUNE 20 — refugees -->
+<!-- AUGUST 9 — Berlin, Lisovsky festival -->
 <section class="june" id="june">
   <div class="km-mark" style="color:var(--black)">KM 100 · <span data-fr>Prochaine course</span><span data-en>Next run</span><span data-ru>Следующий забег</span></div>
 
-  <!-- Vasya's actual handwriting: ULTRAMARATHON en soutien aux RÉFUGIÉS -->
-  <div class="handwriting">
-    <img src="assets/handwriting-refugees.png" alt="Ultramarathon en soutien aux réfugiés — manuscrit de Vasilii Berezin" />
-  </div>
-
   <h2>
-    <span class="date">20.06.2026</span>
-    <span data-fr>Course pour les <span style="color:var(--black)">réfugiés.</span></span>
-    <span data-en>Run for the <span style="color:var(--black)">refugees.</span></span>
-    <span data-ru>Бег для <span style="color:var(--black)">беженцев.</span></span>
+    <span class="date">09.08.2026</span>
+    <span data-fr>Berlin. Le prochain <span style="color:var(--black)">seuil.</span></span>
+    <span data-en>Berlin. The next <span style="color:var(--black)">threshold.</span></span>
+    <span data-ru>Берлин. Следующий <span style="color:var(--black)">порог.</span></span>
   </h2>
 
   <p class="lead">
-    <span data-fr>Tout réfugié est d'abord un coureur. Avant d'être un statut, un dossier, une nationalité — un corps qui fuit.<br><br>Le 20 juin, je <em>deviens-coureur</em> avec eux. Cent kilomètres comme une fuite à l'envers : non pour échapper, mais pour rejoindre. Le théâtre, ici, n'est pas un spectacle — c'est un agencement de solidarité. Corps contre corps. Souffle contre souffle.<br><br><strong>En partenariat avec L'atelier des artistes en exil.</strong></span>
-    <span data-en>Every refugee is first a runner. Before being a status, a file, a nationality — a body in flight.<br><br>On June 20, I <em>become-runner</em> with them. A hundred kilometres as a reverse flight: not to escape, but to join. Theatre, here, is not a spectacle — it is an assemblage of solidarity. Body against body. Breath against breath.<br><br><strong>In partnership with L'atelier des artistes en exil.</strong></span>
-    <span data-ru>Каждый беженец — сначала бегун. До того, как стать статусом, делом, гражданством — он тело, которое бежит.<br><br>20 июня я <em>становлюсь-бегуном</em> вместе с ними. Сто километров как обратное бегство: не чтобы убежать, а чтобы присоединиться. Театр здесь — не зрелище. Это сборка солидарности. Тело против тела. Дыхание против дыхания.<br><br><strong>Совместно с L'atelier des artistes en exil.</strong></span>
+    <span data-fr>Le 9 août, je cours et je joue au festival de Vsevolod Lisovski, à Berlin. Un autre asphalte, une autre ville — le même principe : le corps épuisé ne peut plus mentir, et c'est de là que part le théâtre.</span>
+    <span data-en>On August 9, I run and perform at Vsevolod Lisovsky's festival in Berlin. Another asphalt, another city — the same principle: an exhausted body can no longer lie, and that's where the theatre begins.</span>
+    <span data-ru>9 августа я бегу и играю на фестивале Всеволода Лисовского в Берлине. Другой асфальт, другой город — тот же принцип: истощённое тело не может врать, и театр начинается именно оттуда.</span>
   </p>
+
+  <div class="countdown" id="countdown" aria-label="countdown to 9 August 2026">
+    <div><span class="num" id="cd-days">—</span><span class="unit" data-fr>jours</span><span class="unit" data-en>days</span><span class="unit" data-ru>дней</span></div>
+    <div><span class="num" id="cd-hours">—</span><span class="unit" data-fr>heures</span><span class="unit" data-en>hours</span><span class="unit" data-ru>часов</span></div>
+    <div><span class="num" id="cd-mins">—</span><span class="unit" data-fr>min</span><span class="unit" data-en>min</span><span class="unit" data-ru>мин</span></div>
+  </div>
 
   <img class="runner-sketch" src="assets/sketch-runner.png" alt="Coureur — croquis de Vasilii Berezin" />
 
   <div class="actions">
-    <a href="mailto:vasiliyberezin.art@gmail.com?subject=Course%20longue%20distance%20%E2%80%94%20venir%20le%2020%20juin">
+    <a href="mailto:vasiliyberezin.art@gmail.com?subject=Course%20longue%20distance%20%E2%80%94%20Berlin%209%20ao%C3%BBt">
       <strong data-fr>Venir au spectacle</strong><strong data-en>Come to the show</strong><strong data-ru>Прийти на спектакль</strong>
-      <span data-fr>20 juin · Paris · entrée libre. Écrivez-moi pour confirmer votre venue — je vous indiquerai le lieu et l'heure exacts.</span>
-      <span data-en>June 20 · Paris · free entry. Write to confirm you're coming — I'll send the exact place and time.</span>
-      <span data-ru>20 июня · Париж · вход свободный. Напишите, что придёте — пришлю точное место и время.</span>
+      <span data-fr>9 août · Berlin · festival de Vsevolod Lisovski. Écrivez-moi pour les détails.</span>
+      <span data-en>August 9 · Berlin · Vsevolod Lisovsky's festival. Write to me for details.</span>
+      <span data-ru>9 августа · Берлин · фестиваль Всеволода Лисовского. Напишите — пришлю детали.</span>
     </a>
     <a href="https://instagram.com/vasiliiberezin" target="_blank" rel="noopener">
       <strong>Instagram</strong>
       <span data-fr>Lieu, heure, souffle en direct depuis l'asphalte.</span>
       <span data-en>Place, hour, breath broadcast live from the asphalt.</span>
       <span data-ru>Место, час, дыхание в прямом эфире с асфальта.</span>
-    </a>
-    <a href="mailto:vasiliyberezin.art@gmail.com?subject=T%C3%A9l%C3%A9phone%20%C2%B7%20Course%20longue%20distance">
-      <strong data-fr>Prêter un téléphone</strong><strong data-en>Lend a phone</strong><strong data-ru>Дать телефон</strong>
-      <span data-fr>Mon téléphone est mort sous la pluie pendant la dernière course. Si vous en avez un à me prêter pour enregistrer le parcours et filmer — écrivez-moi.</span>
-      <span data-en>My phone died in the rain during the last run. If you have one to lend me for recording the route and filming — please write.</span>
-      <span data-ru>Мой телефон умер под дождём в прошлый забег. Если есть телефон, который можете одолжить, чтобы записать маршрут и снять видео — напишите.</span>
     </a>
     <a href="mailto:vasiliyberezin.art@gmail.com?subject=Festival%20%C2%B7%20Course%20longue%20distance">
       <strong data-fr>Inviter en festival</strong><strong data-en>Invite to a festival</strong><strong data-ru>Позвать на фестиваль</strong>
@@ -990,6 +994,22 @@
   track.innerHTML = photos.concat(photos).map(p=>(
     `<figure><img src="${p.src}" loading="lazy" alt="${p.km}"/><figcaption><span>${p.km}</span><span>${p.date}</span></figcaption></figure>`
   )).join('');
+
+  /* countdown to 9 August 2026, 19:00 Europe/Berlin */
+  function updateCountdown(){
+    const target = new Date('2026-08-09T19:00:00+02:00').getTime();
+    const now = Date.now();
+    const diff = Math.max(0, target - now);
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const dEl = document.getElementById('cd-days');
+    const hEl = document.getElementById('cd-hours');
+    const mEl = document.getElementById('cd-mins');
+    if(dEl){ dEl.textContent = days; hEl.textContent = String(hours).padStart(2,'0'); mEl.textContent = String(mins).padStart(2,'0'); }
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 30000);
 
   /* reveal on scroll */
   const io = new IntersectionObserver(es=>{
