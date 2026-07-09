@@ -978,13 +978,17 @@
 
   /* photo strip — 3 unique photos, duplicated for seamless infinite tape */
   const photos = [
-    {src:'assets/photo-1.jpg', km:'KM 32'},
-    {src:'assets/photo-2.jpg', km:'KM 65'},
-    {src:'assets/photo-4.jpg', km:'KM 97'},
+    {src:'assets/photo-1.jpg', km:'KM 32', date:'13.03'},
+    {src:'assets/photo-2.jpg', km:'KM 65', date:'13.03'},
+    {src:'assets/photo-4.jpg', km:'KM 97', date:'13.03'},
+    {src:'assets/heat-1.jpg', km:'AÉROPORT', date:'20.06'},
+    {src:'assets/heat-2.jpg', km:'START', date:'20.06'},
+    {src:'assets/heat-3.jpg', km:'33°C', date:'20.06'},
+    {src:'assets/heat-4.jpg', km:'KM 100', date:'20.06'},
   ];
   const track = document.getElementById('track');
   track.innerHTML = photos.concat(photos).map(p=>(
-    `<figure><img src="${p.src}" loading="lazy" alt="${p.km}"/><figcaption><span>${p.km}</span><span>13.03</span></figcaption></figure>`
+    `<figure><img src="${p.src}" loading="lazy" alt="${p.km}"/><figcaption><span>${p.km}</span><span>${p.date}</span></figcaption></figure>`
   )).join('');
 
   /* reveal on scroll */
