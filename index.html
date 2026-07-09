@@ -90,6 +90,27 @@
     44%{transform:scale(1.08);opacity:0.9}
     58%,100%{transform:scale(1);opacity:0.7}
   }
+
+  .music-toggle{
+    position:fixed;bottom:24px;right:24px;z-index:300;
+    width:52px;height:52px;border-radius:50%;
+    background:var(--black);color:var(--paper);
+    border:2px solid var(--paper);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,0.35);
+    transition:transform 0.2s;
+  }
+  .music-toggle:hover{transform:scale(1.08)}
+  .music-toggle svg{width:20px;height:20px}
+  .music-toggle.playing svg{animation:heartbeat 1.7s ease-in-out infinite}
+  .music-toggle .label{
+    position:absolute;right:60px;bottom:14px;
+    font-family:'Archivo Black',sans-serif;font-size:10px;letter-spacing:0.1em;
+    text-transform:uppercase;background:var(--black);color:var(--paper);
+    padding:6px 10px;white-space:nowrap;opacity:0;transition:opacity 0.2s;pointer-events:none;
+  }
+  .music-toggle:hover .label{opacity:1}
+
   nav .links{display:flex;gap:18px;align-items:center}
   nav .links a{transition:color 0.2s}
   nav .links a:hover{color:var(--red)}
@@ -948,6 +969,12 @@
   </div>
 </footer>
 
+<button class="music-toggle" id="musicToggle" aria-label="Toggle music">
+  <span class="label" data-fr>Musique</span><span class="label" data-en>Music</span><span class="label" data-ru>Музыка</span>
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+</button>
+<audio id="bgMusic" src="assets/triphop-loop.mp3" loop preload="none"></audio>
+
 <script>
   /* i18n */
   const langs = ['fr','en','ru'];
@@ -1011,6 +1038,19 @@
   }
   updateCountdown();
   setInterval(updateCountdown, 30000);
+
+  /* music toggle */
+  const musicBtn = document.getElementById('musicToggle');
+  const bgMusic = document.getElementById('bgMusic');
+  musicBtn.addEventListener('click', () => {
+    if(bgMusic.paused){
+      bgMusic.play();
+      musicBtn.classList.add('playing');
+    } else {
+      bgMusic.pause();
+      musicBtn.classList.remove('playing');
+    }
+  });
 
   /* reveal on scroll */
   const io = new IntersectionObserver(es=>{
