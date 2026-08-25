@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Course longue distance — Vasilii Berezin · 100 km + spectacle</title>
-<meta name="description" content="Course longue distance — un ultramarathon de 100 km, puis le spectacle, sans pause. Mise en scène : Vasilii Berezin. 100 km courus le 20 juin par 33°C. Prochain : le 9 août à Berlin." />
+<meta name="description" content="Course longue distance — un ultramarathon de 100 km, puis le spectacle, sans pause. Mise en scène : Vasilii Berezin. Paris, 13 mars et 20 juin 2026. Berlin, 9 août 2026 : 100 km et le spectacle, au festival de l'émigration." />
 <meta name="theme-color" content="#E10600" />
 <meta property="og:title" content="Course longue distance — 100 km, puis le spectacle" />
-<meta property="og:description" content="100 km courus par 33°C, puis le spectacle. Le théâtre commence sur l'asphalte. Prochain rendez-vous : Berlin, le 9 août." />
+<meta property="og:description" content="Paris, puis Berlin : 100 km courus, puis le spectacle, sans pause. Le théâtre commence sur l'asphalte." />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="assets/poster.jpg" />
 <meta property="og:locale" content="fr_FR" />
@@ -189,7 +189,10 @@
     font-size:12px;letter-spacing:0.1em;text-transform:uppercase;
     border-top:1px solid rgba(255,255,255,0.15);padding-top:24px;
   }
-  .hero .meta div span{display:block;color:var(--grey);font-size:10px;margin-bottom:4px;font-weight:400;letter-spacing:0.15em}
+  .hero .meta div span{color:var(--grey);font-size:10px;margin-bottom:4px;font-weight:400;letter-spacing:0.15em}
+  html[data-lang="fr"] .hero .meta div span[data-fr],
+  html[data-lang="en"] .hero .meta div span[data-en],
+  html[data-lang="ru"] .hero .meta div span[data-ru]{display:block}
   .hero .meta div strong{color:var(--paper);font-weight:inherit}
 
   .scroll-cue{
@@ -418,14 +421,6 @@
   }
   .june .actions a span{font-size:14px;line-height:1.4;opacity:0.85}
 
-  .june .countdown{
-    display:flex;justify-content:center;gap:40px;margin:40px 0 20px;
-  }
-  .june .countdown > div{display:flex;flex-direction:column;align-items:center}
-  .june .countdown .num{
-    font-family:'Archivo Black',sans-serif;font-size:48px;color:var(--paper);line-height:1;
-  }
-  .june .countdown .unit{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);margin-top:4px}
 
   /* Quote section */
   .quote{
@@ -517,6 +512,101 @@
     .strip figure{width:260px}
     .strip figure img{aspect-ratio:4/3}
   }
+  /* ——— BERLIN · 9 août 2026 ——— */
+  .berlin{
+    padding:140px 8vw;
+    background:var(--black);
+    color:var(--paper);
+    position:relative;
+    overflow:hidden;
+  }
+  .berlin::before{
+    content:"";position:absolute;inset:0;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.07'/></svg>");
+    pointer-events:none;
+  }
+  .berlin > *{position:relative;z-index:1}
+  .berlin .km-mark{
+    font-family:'Archivo Black',sans-serif;font-size:11px;letter-spacing:0.2em;color:var(--red);margin-bottom:30px;
+  }
+  .berlin h2{
+    font-family:'Archivo Black',sans-serif;
+    font-size:clamp(38px,7vw,86px);line-height:0.95;letter-spacing:-0.02em;
+    margin-bottom:34px;
+  }
+  .berlin h2 .red{color:var(--red)}
+  .berlin .lead{
+    max-width:760px;font-size:clamp(17px,2vw,21px);line-height:1.6;color:#D8D4CE;
+  }
+  .berlin .result{
+    display:flex;flex-wrap:wrap;gap:48px;margin:54px 0 10px;
+    padding:28px 0;border-top:1px solid #2A2A2A;border-bottom:1px solid #2A2A2A;
+  }
+  .berlin .result > div{display:flex;flex-direction:column}
+  .berlin .result .num{
+    font-family:'Archivo Black',sans-serif;font-size:clamp(30px,4vw,52px);line-height:1;color:var(--paper);
+  }
+  .berlin .result .unit{
+    font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--grey);margin-top:8px;
+  }
+  .berlin .strava{
+    max-width:760px;margin:56px 0 0;font-size:clamp(16px,1.9vw,19px);line-height:1.6;color:#C9C5BF;
+  }
+  .berlin .strava p+p{margin-top:14px}
+  .berlin .strava strong{color:var(--paper)}
+  .berlin .strava .punch{
+    font-family:'Archivo Black',sans-serif;
+    font-size:clamp(20px,2.6vw,30px);line-height:1.25;color:var(--red);
+    margin-top:20px;max-width:640px;
+  }
+  .berlin .b-gallery{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:70px 0 0;
+  }
+  .berlin .b-gallery figure{overflow:hidden;background:#141414}
+  .berlin .b-gallery img{
+    width:100%;height:100%;aspect-ratio:1/1;object-fit:cover;display:block;
+    filter:grayscale(1) contrast(1.08);
+    transition:filter .5s ease, transform .5s ease;
+  }
+  .berlin .b-gallery figure:hover img{filter:grayscale(0) contrast(1);transform:scale(1.04)}
+  .berlin .reels{margin-top:80px}
+  .berlin .reels h4{
+    font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--grey);margin-bottom:22px;
+  }
+  .berlin .reel-row{display:flex;gap:18px;flex-wrap:wrap}
+  .berlin .reel-row figure{flex:1 1 220px;max-width:300px}
+  .berlin .reel-row video{
+    width:100%;aspect-ratio:9/16;background:#000;display:block;object-fit:cover;
+  }
+  .berlin .reel-row figcaption{
+    margin-top:10px;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--grey);
+  }
+  .berlin .actions{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:80px;
+  }
+  .berlin .actions a{
+    display:block;padding:24px;border:1px solid #2A2A2A;text-decoration:none;color:var(--paper);
+    transition:background .3s ease,border-color .3s ease;
+  }
+  .berlin .actions a:hover{background:#141414;border-color:var(--red)}
+  .berlin .actions strong{
+    font-family:'Archivo Black',sans-serif;font-size:17px;margin-bottom:8px;
+  }
+  html[data-lang="fr"] .berlin .actions strong[data-fr],
+  html[data-lang="en"] .berlin .actions strong[data-en],
+  html[data-lang="ru"] .berlin .actions strong[data-ru],
+  .berlin .actions strong:not([data-fr]):not([data-en]):not([data-ru]){display:block}
+  .berlin .actions span{font-size:14px;line-height:1.5;color:var(--grey)}
+  html[data-lang="fr"] .berlin .actions span[data-fr],
+  html[data-lang="en"] .berlin .actions span[data-en],
+  html[data-lang="ru"] .berlin .actions span[data-ru]{display:block}
+  .berlin .actions a > span:not([data-fr]):not([data-en]):not([data-ru]){display:block}
+  @media(max-width:820px){
+    .berlin{padding:90px 6vw}
+    .berlin .b-gallery{grid-template-columns:repeat(2,1fr)}
+    .berlin .actions{grid-template-columns:1fr}
+    .berlin .result{gap:28px}
+  }
 </style>
 </head>
 <body>
@@ -529,7 +619,7 @@
   <div class="links">
     <a href="#manifeste" data-fr>Manifeste</a><a href="#manifeste" data-en>Manifesto</a><a href="#manifeste" data-ru>Манифест</a>
     <a href="#recit" data-fr>Récit</a><a href="#recit" data-en>The run</a><a href="#recit" data-ru>Дневник</a>
-    <a href="#june" data-fr>9 août</a><a href="#june" data-en>Aug 9</a><a href="#june" data-ru>9 августа</a>
+    <a href="#berlin" data-fr>Berlin</a><a href="#berlin" data-en>Berlin</a><a href="#berlin" data-ru>Берлин</a>
     <span class="lang lang-wrapper">
       <button data-set="fr">FR</button><button data-set="en">EN</button><button data-set="ru">RU</button>
     </span>
@@ -570,7 +660,7 @@
         <strong>13.03.2026 · Le Chat Noir</strong>
       </div>
       <div>
-        <span data-fr>Prochaine</span><span data-en>Next</span><span data-ru>Следующий</span>
+        <span data-fr>Berlin</span><span data-en>Berlin</span><span data-ru>Берлин</span>
         <strong style="color:var(--red)">09.08.2026</strong>
       </div>
       <div>
@@ -834,48 +924,86 @@
 </div>
 
 <!-- AUGUST 9 — Berlin, Lisovsky festival -->
-<section class="june" id="june">
-  <div class="km-mark" style="color:var(--black)">KM 100 · <span data-fr>Prochaine course</span><span data-en>Next run</span><span data-ru>Следующий забег</span></div>
-
+<section class="berlin" id="berlin">
+  <div class="km-mark">KM 0 — 100 · <span data-fr>Berlin, 9 août</span><span data-en>Berlin, August 9</span><span data-ru>Берлин, 9 августа</span></div>
   <h2>
-    <span class="date">09.08.2026</span>
-    <span data-fr>Berlin. Le prochain <span style="color:var(--black)">seuil.</span></span>
-    <span data-en>Berlin. The next <span style="color:var(--black)">threshold.</span></span>
-    <span data-ru>Берлин. Следующий <span style="color:var(--black)">порог.</span></span>
+    <span data-fr>100 km. Berlin.<br><span class="red">L'émigration.</span></span>
+    <span data-en>100 km. Berlin.<br><span class="red">Emigration.</span></span>
+    <span data-ru>100 км. Берлин.<br><span class="red">Эмиграция.</span></span>
   </h2>
 
   <p class="lead">
-    <span data-fr>Le 9 août, je cours et je joue au festival de Vsevolod Lisovski, à Berlin. Un autre asphalte, une autre ville — le même principe : le corps épuisé ne peut plus mentir, et c'est de là que part le théâtre.</span>
-    <span data-en>On August 9, I run and perform at Vsevolod Lisovsky's festival in Berlin. Another asphalt, another city — the same principle: an exhausted body can no longer lie, and that's where the theatre begins.</span>
-    <span data-ru>9 августа я бегу и играю на фестивале Всеволода Лисовского в Берлине. Другой асфальт, другой город — тот же принцип: истощённое тело не может врать, и театр начинается именно оттуда.</span>
+    <span data-fr>Le 9 août 2026, j'ai couru cent kilomètres à travers Berlin — et le soir même, j'ai joué. Au festival de l'émigration de Vsevolod Lisovski. L'itinéraire passait par un ancien aéroport et par le centre : d'un bord de la ville à l'autre.</span>
+    <span data-en>On 9 August 2026 I ran a hundred kilometres across Berlin — and the same evening, I performed. At Vsevolod Lisovsky's festival of emigration. The route went through a former airport and through downtown: from one edge of the city to the other.</span>
+    <span data-ru>9 августа 2026 я пробежал сто километров по Берлину — и вечером играл. На фестивале эмиграции Всеволода Лисовского. Маршрут шёл через бывший аэропорт и через центр: с одного края города на другой.</span>
   </p>
 
-  <div class="countdown" id="countdown" aria-label="countdown to 9 August 2026">
-    <div><span class="num" id="cd-days">—</span><span class="unit" data-fr>jours</span><span class="unit" data-en>days</span><span class="unit" data-ru>дней</span></div>
-    <div><span class="num" id="cd-hours">—</span><span class="unit" data-fr>heures</span><span class="unit" data-en>hours</span><span class="unit" data-ru>часов</span></div>
-    <div><span class="num" id="cd-mins">—</span><span class="unit" data-fr>min</span><span class="unit" data-en>min</span><span class="unit" data-ru>мин</span></div>
+  <div class="result" aria-label="résultat">
+    <div><span class="num">100</span><span class="unit">KM</span></div>
+    <div><span class="num">09.08</span><span class="unit">2026</span></div>
+    <div><span class="num">BERLIN</span><span class="unit" data-fr>couru &amp; joué</span><span class="unit" data-en>ran &amp; performed</span><span class="unit" data-ru>пробежал и играл</span></div>
   </div>
 
-  <img class="runner-sketch" src="assets/sketch-runner.png" alt="Coureur — croquis de Vasilii Berezin" />
+  <div class="strava">
+    <div data-fr>
+      <p>Il y a des lieux que <strong>Strava</strong> ne compte pas. Des lieux anciens, vides, où personne ne court. L'application ne les connaît pas : pas de segment, pas de trace, pas de record.</p>
+      <p class="punch">Tu les traverses — et pour la carte, tu n'y as jamais été.</p>
+    </div>
+    <div data-en>
+      <p>There are places <strong>Strava</strong> doesn't count. Old places, empty, where nobody runs. The app doesn't know them: no segment, no trace, no record.</p>
+      <p class="punch">You cross them — and for the map, you were never there.</p>
+    </div>
+    <div data-ru>
+      <p>Есть места, которые <strong>Strava</strong> не считает. Старые, пустые, где никто не бегает. Приложение их не знает: ни сегмента, ни следа, ни рекорда.</p>
+      <p class="punch">Ты проходишь через них — а для карты тебя там не было.</p>
+    </div>
+  </div>
+
+  <div class="b-gallery" aria-label="Berlin">
+    <figure><img loading="lazy" src="assets/berlin/b-01.jpg" alt="Berlin — coucher de soleil sur la Spree" /></figure>
+    <figure><img loading="lazy" src="assets/berlin/b-05.jpg" alt="Berlin — une voiture en fourrure" /></figure>
+    <figure><img loading="lazy" src="assets/berlin/b-07.jpg" alt="Berlin — maison et drapeau" /></figure>
+    <figure><img loading="lazy" src="assets/berlin/b-09.jpg" alt="Berlin — mur, cœur noir" /></figure>
+    <figure><img loading="lazy" src="assets/berlin/b-03.jpg" alt="Berlin — champ au crépuscule" /></figure>
+    <figure><img loading="lazy" src="assets/berlin/b-02.jpg" alt="Berlin — la Spree, grues, plage" /></figure>
+    <figure><img loading="lazy" src="assets/berlin/b-06.jpg" alt="Berlin — le coureur" /></figure>
+    <figure><img loading="lazy" src="assets/berlin/b-11.jpg" alt="Berlin — aéroport, avions" /></figure>
+  </div>
+
+  <div class="reels">
+    <h4>
+      <span data-fr>Trois bobines, tournées autour de la course</span>
+      <span data-en>Three reels, shot around the run</span>
+      <span data-ru>Три ролика, снятые вокруг забега</span>
+    </h4>
+    <div class="reel-row">
+      <figure>
+        <video preload="none" playsinline controls poster="assets/reels/addiction.jpg" src="assets/reels/addiction.mp4"></video>
+        <figcaption><span data-fr>La dépendance</span><span data-en>Addiction</span><span data-ru>Зависимость</span></figcaption>
+      </figure>
+      <figure>
+        <video preload="none" playsinline controls poster="assets/reels/sobriety.jpg" src="assets/reels/sobriety.mp4"></video>
+        <figcaption><span data-fr>La sobriété</span><span data-en>Sobriety</span><span data-ru>Трезвость</span></figcaption>
+      </figure>
+      <figure>
+        <video preload="none" playsinline controls poster="assets/reels/running.jpg" src="assets/reels/running.mp4"></video>
+        <figcaption><span data-fr>La course</span><span data-en>Running</span><span data-ru>Бег</span></figcaption>
+      </figure>
+    </div>
+  </div>
 
   <div class="actions">
-    <a href="mailto:vasiliyberezin.art@gmail.com?subject=Course%20longue%20distance%20%E2%80%94%20Berlin%209%20ao%C3%BBt">
-      <strong data-fr>Venir au spectacle</strong><strong data-en>Come to the show</strong><strong data-ru>Прийти на спектакль</strong>
-      <span data-fr>9 août · Berlin · festival de Vsevolod Lisovski. Écrivez-moi pour les détails.</span>
-      <span data-en>August 9 · Berlin · Vsevolod Lisovsky's festival. Write to me for details.</span>
-      <span data-ru>9 августа · Берлин · фестиваль Всеволода Лисовского. Напишите — пришлю детали.</span>
-    </a>
-    <a href="https://instagram.com/vasiliiberezin" target="_blank" rel="noopener">
-      <strong>Instagram</strong>
-      <span data-fr>Lieu, heure, souffle en direct depuis l'asphalte.</span>
-      <span data-en>Place, hour, breath broadcast live from the asphalt.</span>
-      <span data-ru>Место, час, дыхание в прямом эфире с асфальта.</span>
-    </a>
     <a href="mailto:vasiliyberezin.art@gmail.com?subject=Festival%20%C2%B7%20Course%20longue%20distance">
       <strong data-fr>Inviter en festival</strong><strong data-en>Invite to a festival</strong><strong data-ru>Позвать на фестиваль</strong>
       <span data-fr>Le spectacle voyage. Une autre ville, un autre asphalte, un autre seuil.</span>
       <span data-en>The show travels. Another city, another asphalt, another threshold.</span>
       <span data-ru>Спектакль ездит. Другой город, другой асфальт, другой порог.</span>
+    </a>
+    <a href="https://instagram.com/vasiliiberezin" target="_blank" rel="noopener">
+      <strong>Instagram</strong>
+      <span data-fr>Le souffle en direct depuis l'asphalte.</span>
+      <span data-en>Breath, live from the asphalt.</span>
+      <span data-ru>Дыхание в прямом эфире с асфальта.</span>
     </a>
   </div>
 </section>
@@ -950,7 +1078,7 @@
       <ul>
         <li>13.03.2026 · Le Chat Noir, Paris</li>
         <li>20.06.2026 · Paris — <span data-fr>réfugiés, 100 km</span><span data-en>refugees, 100 km</span><span data-ru>беженцы, 100 км</span></li>
-        <li><strong style="color:var(--red)">09.08.2026 · Berlin — <span data-fr>Lisovski</span><span data-en>Lisovsky</span><span data-ru>Лисовский</span></strong></li>
+        <li><strong style="color:var(--red)">09.08.2026 · Berlin — <span data-fr>Lisovski, 100 km</span><span data-en>Lisovsky, 100 km</span><span data-ru>Лисовский, 100 км</span></strong></li>
       </ul>
     </div>
     <div>
@@ -1022,22 +1150,6 @@
   track.innerHTML = photos.concat(photos).map(p=>(
     `<figure><img src="${p.src}" loading="lazy" alt="${p.km}"/><figcaption><span>${p.km}</span><span>${p.date}</span></figcaption></figure>`
   )).join('');
-
-  /* countdown to 9 August 2026, 19:00 Europe/Berlin */
-  function updateCountdown(){
-    const target = new Date('2026-08-09T19:00:00+02:00').getTime();
-    const now = Date.now();
-    const diff = Math.max(0, target - now);
-    const days = Math.floor(diff / 86400000);
-    const hours = Math.floor((diff % 86400000) / 3600000);
-    const mins = Math.floor((diff % 3600000) / 60000);
-    const dEl = document.getElementById('cd-days');
-    const hEl = document.getElementById('cd-hours');
-    const mEl = document.getElementById('cd-mins');
-    if(dEl){ dEl.textContent = days; hEl.textContent = String(hours).padStart(2,'0'); mEl.textContent = String(mins).padStart(2,'0'); }
-  }
-  updateCountdown();
-  setInterval(updateCountdown, 30000);
 
   /* music toggle */
   const musicBtn = document.getElementById('musicToggle');
