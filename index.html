@@ -597,6 +597,21 @@
   html[data-lang="ru"] .berlin .actions strong[data-ru],
   .berlin .actions strong:not([data-fr]):not([data-en]):not([data-ru]){display:block}
   .berlin .actions span{font-size:14px;line-height:1.5;color:var(--grey)}
+  /* ——— NEXT · Paris → Le Havre → Narva ——— */
+  .berlin.next{background:var(--red)}
+  .berlin.next .km-mark{color:var(--black)}
+  .berlin.next h2 .red{color:var(--black)}
+  .berlin.next .lead{color:var(--paper)}
+  .berlin.next .result{border-color:rgba(10,10,10,.35)}
+  .berlin.next .result .unit{color:rgba(244,241,236,.8)}
+  .berlin.next .result .done .num{text-decoration:line-through;text-decoration-thickness:4px;opacity:.55}
+  .berlin.next .strava{color:var(--paper)}
+  .berlin.next .strava .punch{color:var(--black)}
+  .berlin.next .actions{grid-template-columns:repeat(3,1fr)}
+  .berlin.next .actions a{border-color:rgba(10,10,10,.4)}
+  .berlin.next .actions a:hover{background:var(--black);border-color:var(--black)}
+  .berlin.next .actions span{color:rgba(244,241,236,.85)}
+  @media (max-width:760px){.berlin.next .actions{grid-template-columns:1fr}}
   html[data-lang="fr"] .berlin .actions span[data-fr],
   html[data-lang="en"] .berlin .actions span[data-en],
   html[data-lang="ru"] .berlin .actions span[data-ru]{display:block}
@@ -620,6 +635,7 @@
     <a href="#manifeste" data-fr>Manifeste</a><a href="#manifeste" data-en>Manifesto</a><a href="#manifeste" data-ru>Манифест</a>
     <a href="#recit" data-fr>Récit</a><a href="#recit" data-en>The run</a><a href="#recit" data-ru>Дневник</a>
     <a href="#berlin" data-fr>Berlin</a><a href="#berlin" data-en>Berlin</a><a href="#berlin" data-ru>Берлин</a>
+    <a href="#next" data-fr>La suite</a><a href="#next" data-en>Next</a><a href="#next" data-ru>Дальше</a>
     <span class="lang lang-wrapper">
       <button data-set="fr">FR</button><button data-set="en">EN</button><button data-set="ru">RU</button>
     </span>
@@ -999,11 +1015,70 @@
       <span data-en>The show travels. Another city, another asphalt, another threshold.</span>
       <span data-ru>Спектакль ездит. Другой город, другой асфальт, другой порог.</span>
     </a>
-    <a href="https://instagram.com/vasiliiberezin" target="_blank" rel="noopener">
+    <a href="https://instagram.com/berezinvasya" target="_blank" rel="noopener">
       <strong>Instagram</strong>
       <span data-fr>Le souffle en direct depuis l'asphalte.</span>
       <span data-en>Breath, live from the asphalt.</span>
       <span data-ru>Дыхание в прямом эфире с асфальта.</span>
+    </a>
+  </div>
+</section>
+
+<!-- NEXT · Paris → Le Havre → Narva -->
+<section class="berlin next" id="next">
+  <div class="km-mark">KM 100 → 200 → 2 500 · <span data-fr>La suite</span><span data-en>What's next</span><span data-ru>Дальше</span></div>
+  <h2>
+    <span data-fr>200 km jusqu'à la mer.<br><span class="red">2 500 km jusqu'à ma mère.</span></span>
+    <span data-en>200 km to the sea.<br><span class="red">2,500 km to my mother.</span></span>
+    <span data-ru>200 км до моря.<br><span class="red">2500 км до мамы.</span></span>
+  </h2>
+
+  <p class="lead">
+    <span data-fr>Après cent kilomètres dans un spectacle, je veux savoir où est ma limite. Prochaine étape : courir 200 km de Paris au Havre, le long de la Seine. Puis le vrai voyage : 2 500 km de Paris jusqu'à Narva, à la frontière estonienne. Ma mère viendra de l'autre côté de la rivière.</span>
+    <span data-en>After a hundred kilometres inside a show, I want to find out where my limit is. Next step: running 200 km from Paris to Le Havre, along the Seine. Then the real journey: 2,500 km from Paris to Narva, on the Estonian border. My mother will come to the other side of the river.</span>
+    <span data-ru>После ста километров в спектакле я хочу узнать, где мой предел. Следующий этап: 200 км из Парижа в Гавр, вдоль Сены. Потом настоящая дорога: 2500 км из Парижа до Нарвы, на границе с Эстонией. Мама придёт на другой берег реки.</span>
+  </p>
+
+  <div class="result" aria-label="étapes">
+    <div class="done"><span class="num">100</span><span class="unit" data-fr>Paris · Berlin — fait</span><span class="unit" data-en>Paris · Berlin — done</span><span class="unit" data-ru>Париж · Берлин — есть</span></div>
+    <div><span class="num">200</span><span class="unit" data-fr>Paris → Le Havre</span><span class="unit" data-en>Paris → Le Havre</span><span class="unit" data-ru>Париж → Гавр</span></div>
+    <div><span class="num">2 500</span><span class="unit" data-fr>Paris → Narva</span><span class="unit" data-en>Paris → Narva</span><span class="unit" data-ru>Париж → Нарва</span></div>
+    <div><span class="num">1</span><span class="unit" data-fr>maison, au bout</span><span class="unit" data-en>home, at the end</span><span class="unit" data-ru>дом, в конце</span></div>
+  </div>
+
+  <div class="strava">
+    <div data-fr>
+      <p>Chaque kilomètre de la route servira aussi à autre chose : construire un endroit à moi. Un émigré court vers sa mère, et en chemin il se construit une maison.</p>
+      <p class="punch">Je raconte la préparation chaque semaine sur Instagram.</p>
+    </div>
+    <div data-en>
+      <p>Every kilometre of the road will also serve something else: building a place of my own. An emigrant runs towards his mother, and on the way he builds himself a home.</p>
+      <p class="punch">I share the training every week on Instagram.</p>
+    </div>
+    <div data-ru>
+      <p>Каждый километр дороги будет работать ещё на одно: на место, которое станет моим. Эмигрант бежит к маме и по пути строит себе дом.</p>
+      <p class="punch">Подготовку показываю каждую неделю в Instagram.</p>
+    </div>
+  </div>
+
+  <div class="actions">
+    <a href="mailto:vasiliyberezin.art@gmail.com?subject=Partenariat%20%C2%B7%20200%20km%20Paris%20%E2%86%92%20Le%20Havre">
+      <strong data-fr>Marques</strong><strong data-en>Brands</strong><strong data-ru>Брендам</strong>
+      <span data-fr>Chaussures, nutrition, montre, vêtements : votre matériel à l'écran, en collab Reels, testé pour de vrai.</span>
+      <span data-en>Shoes, nutrition, watch, clothing: your gear on screen, in collab Reels, tested for real.</span>
+      <span data-ru>Кроссовки, питание, часы, одежда: ваша вещь в кадре, совместные Reels, проверено на дистанции.</span>
+    </a>
+    <a href="mailto:vasiliyberezin.art@gmail.com?subject=Courir%20avec%20toi%20%C2%B7%20Paris%20%E2%86%92%20Le%20Havre">
+      <strong data-fr>Courir un bout</strong><strong data-en>Run a stretch</strong><strong data-ru>Пробежать кусок</strong>
+      <span data-fr>Clubs et coureurs : accompagnez-moi quelques kilomètres sur la Seine.</span>
+      <span data-en>Clubs and runners: join me for a few kilometres along the Seine.</span>
+      <span data-ru>Клубы и бегуны: пробегите со мной несколько километров вдоль Сены.</span>
+    </a>
+    <a href="https://instagram.com/berezinvasya" target="_blank" rel="noopener">
+      <strong>Instagram</strong>
+      <span data-fr>La préparation, semaine après semaine.</span>
+      <span data-en>The training, week after week.</span>
+      <span data-ru>Подготовка, неделя за неделей.</span>
     </a>
   </div>
 </section>
@@ -1069,7 +1144,7 @@
       <h4 data-fr>Contact</h4><h4 data-en>Contact</h4><h4 data-ru>Контакт</h4>
       <ul>
         <li><a href="mailto:vasiliyberezin.art@gmail.com">vasiliyberezin.art@gmail.com</a></li>
-        <li><a href="https://instagram.com/vasiliiberezin" target="_blank" rel="noopener">@vasiliiberezin</a></li>
+        <li><a href="https://instagram.com/berezinvasya" target="_blank" rel="noopener">@berezinvasya</a></li>
         <li><a href="https://oteatre.info/odinochestvo-bega/" target="_blank" rel="noopener">oteatre.info — <span data-fr>entretien</span><span data-en>interview</span><span data-ru>интервью</span></a></li>
       </ul>
     </div>
